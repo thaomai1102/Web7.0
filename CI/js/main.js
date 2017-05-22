@@ -1,5 +1,7 @@
 var Nakama = {};
-Nakama.configs = {};
+Nakama.configs = {
+    mapSpeed: 5
+};
 
 window.onload = function(){
   Nakama.game = new Phaser.Game(640,960,Phaser.AUTO,'',
@@ -31,23 +33,25 @@ var preload = function(){
 var create = function(){
   Nakama.game.physics.startSystem(Phaser.Physics.ARCADE);
   Nakama.keyboard = Nakama.game.input.keyboard;
-
-  var background = Nakama.game.add.sprite(0, 0, 'background');
+  Nakama.map = Nakama.game.add.tileSprite(0, 0, 640, 960, 'background');
+  //var background = Nakama.game.add.sprite(0, 0, 'background');
 
   Nakama.player = Nakama.game.add.sprite(300, 400, 'assets',"Spaceship1-Player.png");
 }
 
 // update game state each frame
 var update = function(){
+  //scrolling map
+ Nakama.map.tilePosition.y += Nakama.configs.mapSpeed;
  if(Nakama.keyboard.isDown(Phaser.Keyboard.UP)){
    Nakama.player.position.y = Math.max(Nakama.player.position.y - 10, 0);
  } else if(Nakama.keyboard.isDown(Phaser.Keyboard.DOWN)){
-   Nakama.player.position.y = Math.min(Nakama.player.position.y + 10, 960 - 78);
+   Nakama.player.position.y = Math.min(Nakama.player.position.y + 10, Nakama.game.height - 78);
  }
  if(Nakama.keyboard.isDown(Phaser.Keyboard.LEFT)){
    Nakama.player.position.x = Math.max(Nakama.player.position.x - 10, 0);
  }else if(Nakama.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-   Nakama.player.position.x = Math.min(Nakama.player.position.x + 10, 640 - 78);
+   Nakama.player.position.x = Math.min(Nakama.player.position.x + 10, Nakama.game.width - 78);
  }
 }
 
