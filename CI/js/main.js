@@ -5,7 +5,6 @@ Nakama.configs = {
     mapSpeed: 5
 };
 
-
 window.onload = function() {
     Nakama.game = new Phaser.Game(640, 960, Phaser.AUTO, '', {
         preload: preload,
