@@ -1,11 +1,19 @@
 class PlayerType1ShipController extends ShipController{
     constructor(x, y, shipType, configs){
-        super(
-          x,
-          y,
-          "Spaceship1-Player.png",
-          configs
-        );
+      // Object.assign(configs, {
+      //   missileCooldown = 0.3,
+      //   cooldown = 0.1,
+      //   frameNameDefault = 'Spaceship1${configs.spriteSuffix}.png',
+      //   frameNameLeft = "Spaceship1Left${configs.spriteSuffix}.png",
+      //   frameNameRight = "Spaceship1Right${configs.spriteSuffix}.png";
+      // })
+
+      super(
+        x,
+        y,
+        "Spaceship1-Player.png",
+        configs
+      );
         this.configs.missileCooldown = 0.3;
         this.configs.cooldown = 0.1;
         this.configs.frameNameDefault = "Spaceship1-" + shipType + ".png";

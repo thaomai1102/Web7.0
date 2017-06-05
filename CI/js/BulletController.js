@@ -18,9 +18,16 @@ class BulletController {
             this.sprite.bulletStrength = Nakama.configs.player2Controller.bulletStrength;
         } else this.sprite.bulletStrength = Nakama.configs.enemyBulletStrength;
 
-        this.sprite.angle = -Math.tan(
-          direction.x / direction.y
-        ) * 180 / Math.PI;
+        this.sprite.angle = Phaser.Math.radToDeg(Phaser.Math.angleBetween(
+            0, 0,
+            direction.x, direction.y
+        )) + 90;
+
+
+        // -Math.tan(
+        //   direction.x / direction.y
+        // ) * 180 / Math.PI;
+
         this.sprite.body.velocity = direction.setMagnitude(this.bulletSpeed);
 
     }

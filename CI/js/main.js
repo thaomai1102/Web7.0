@@ -74,6 +74,11 @@ var create = function() {
     // players
     Nakama.players = [];
 
+    // do {
+    //   var player1Type = parseInt(prompt("Please enter player 1 ship type"));
+    //   console.log(player1Type)
+    // } while (player1Type === NaN || player1Type < 1 || player1Type > 3);
+
     do{
        var Input = prompt("Please choose your spacecraft\n1:\n2:\n3:");
        switch(Input){
@@ -164,10 +169,26 @@ var update = function() {
     //scrolling map
     Nakama.map.tilePosition.y += Nakama.configs.mapSpeed;
 
-    Nakama.game.physics.arcade.overlap(Nakama.enemyBulletGroup, Nakama.playerGroup, bulletPlayerCollider, null, this);
-    Nakama.game.physics.arcade.overlap(Nakama.playerBulletGroup, Nakama.enemyGroup, bulletEnemyCollider, null, this);
-    Nakama.game.physics.arcade.overlap(Nakama.playerGroup, Nakama.enemyGroup, playerEnemyCollider, null, this);
-    Nakama.game.physics.arcade.overlap(Nakama.missileGroup, Nakama.enemyGroup, missileEnemyCollider, null, this);
+    Nakama.game.physics.arcade.overlap(Nakama.enemyBulletGroup,
+      Nakama.playerGroup, bulletPlayerCollider, null, this);
+    Nakama.game.physics.arcade.overlap(
+      Nakama.playerBulletGroup,
+      Nakama.enemyGroup,
+      bulletEnemyCollider,
+      null,
+      this);
+    Nakama.game.physics.arcade.overlap(
+      Nakama.playerGroup,
+      Nakama.enemyGroup,
+      playerEnemyCollider,
+      null,
+      this);
+    Nakama.game.physics.arcade.overlap(
+      Nakama.missileGroup,
+      Nakama.enemyGroup,
+      missileEnemyCollider,
+      null,
+      this);
     Nakama.game.physics.arcade.collide(Nakama.playerGroup, Nakama.playerGroup, null, null, this);
 
     Nakama.players.forEach(function(player) {
